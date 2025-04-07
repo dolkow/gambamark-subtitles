@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+
+import re
+import sys
+
+def fail(msg):
+    print(msg, file=sys.stderr)
+    sys.exit(1)
+
+def blocks(file):
+    eof = False
+    buffered = []
+    while not eof:
+        try:
+            line = next(file)
+        except StopIteration:
+            line = ''
+            eof = True
+        if line.strip():
+            buffered.append(line)
+        elif buffered:
+            yield tuple(buffered)
+            buffered.clear()
+
+TIMESTAMP_PTN = '(?:(\d\d):)?(\d\d):(\d\d)\.(\d\d\d)'
+TIMESTAMP_RE = re.compile('^' + TIMESTAMP_PTN + '\s*-->\s*' + TIMESTAMP_PTN + '$')
+
+for block in blocks(sys.stdin):
+    m = TIMESTAMP_RE.match(block[0])
+    if not m:
+        if block[0] == 'WEBVTT\n':
+            if len(block) > 1:
+                fail('no support for fancy headers')
+            print('<SAMI>')
+            print('<HEAD></HEAD>')
+            print('<BODY>')
+            continue
+        fail('bad timestamp line: %r' % block[0])
+    sh, sm, ss, sd,  eh, em, es, ed = map(lambda s: 0 if s is None else int(s), m.groups())
+    start = sd + 1000 * ss + 60000 * sm + 3600000 * sh
+    end   = ed + 1000 * es + 60000 * em + 3600000 * eh
+    print('<sync start=%d><p>' % start)
+    print('<br>'.join(line.strip('\n') for line in block[1:]))
+    print('<sync start=%d><p>&nbsp;' % end)
+print('</BODY>')
+print('</SAMI>')
