@@ -33,7 +33,7 @@ För alla inkomna bidrag gäller licensen enligt nedan.
 Undertexterna är licensierade under Creative Commons BY 4.0:
 https://creativecommons.org/licenses/by/4.0/
 
-Det betyder att man får använda dem ganska fritt, så länge man namnger den
+Det betyder att man får använda dem ganska fritt, så länge man namnger de som
 skapade dem. Detta görs bäst genom att behålla eller kopiera erkännandet som
 ligger i slutet av eftertexterna.
 
