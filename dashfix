@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -ex
+
+EN_DASH=–
+EM_DASH=—
+
+sed -Ei \
+	-e "/-->/b" \
+	-e "s;--;$EM_DASH;g" \
+	-e "s;^(<i>)?-;\1$EN_DASH;" \
+	-e "s;-(</i>)?$;$EN_DASH\1;" \
+	-e "s; - ;$EM_DASH;" \
+	"$1"
+
+cat "$1" \
+	| grep -v -- '-->' \
+	| sort \
+	| uniq \
+	| grep --color=always -- '-'
