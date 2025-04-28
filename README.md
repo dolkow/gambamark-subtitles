@@ -7,6 +7,12 @@ försvunnit nu. Kanske den kommer upp igen i framtiden?
 Den här gitten innehåller undertexter för Gambämark i WebVTT-format. Jag har
 försökt att följa Medietextarnas riktlinjer så gott jag kan.
 
+![Fem personer med tallrikar med undertexten "Kött och päror, det är vårat knark"](kött-och-päror.jpg)
+
+![Fem personer i dans med undertexten "Det var bättre förr, så vi stängde vår dörr-"](bättre-förr.jpg)
+
+![En man med bok och höjd hand med undertexten "Och på svarta listan har jag sås som inte är brun"](brunsås.jpg)
+
 ## Bidra med förbättringar
 
 Det är inte alltid lätt -- speciellt som skåning -- att förstå vad som sägs, men
